@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import 'mutationobserver-shim';
 
 const ContactForm = () => {
   const [data, setData] = useState();
@@ -14,11 +15,13 @@ const ContactForm = () => {
     <div className="App">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="firstName">First Name*</label>
+          <label htmlFor="firstName">First Name</label>
           <input
+            data-testid="firstName"
+            id="firstName"
             name="firstName"
             placeholder="bill"
-            ref={register({ required: true, maxLength: 3 })}
+            required
           />
           {errors.firstName && (
             <p>Looks like there was an error: {errors.firstName.type}</p>
@@ -26,7 +29,7 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="lastName">Last Name*</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
             name="lastName"
             placeholder="luo"
@@ -39,7 +42,7 @@ const ContactForm = () => {
 
         <div>
           <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
-            Email*
+            Email
           </label>
           <input name="email" ref={register({ required: true })} />
           {errors.email && (
@@ -55,7 +58,7 @@ const ContactForm = () => {
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
-        <input type="submit" />
+        <input type="submit" value="submit"/>
       </form>
     </div>
   );
