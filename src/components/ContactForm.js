@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import 'mutationobserver-shim';
 
 const ContactForm = () => {
   const [data, setData] = useState();
